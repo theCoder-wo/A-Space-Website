@@ -1,0 +1,893 @@
+/*=============== GOOGLE FONTS ===============*/
+@import url("https://fonts.googleapis.com/css2?family=Audiowide&family=Poppins:wght@400;500;600&display=swap");
+
+/*=============== VARIABLES CSS ===============*/
+:root {
+  --header-height: 3.5rem;
+
+  /*========== Colors ==========*/
+  /*Color mode HSL(hue, saturation, lightness)*/
+  --first-color: hsl(238, 100%, 70%);
+  --first-gradient: linear-gradient(
+    90deg,
+    hsl(243, 96%, 54%),
+    hsl(296, 78%, 53%)
+  );
+  --second-gradient: linear-gradient(
+    90deg,
+    hsl(192, 94%, 49%),
+    hsl(224, 98%, 51%)
+  );
+  --third-gradient: linear-gradient(
+    90deg,
+    hsl(25, 96%, 55%),
+    hsl(34, 93%, 53%)
+  );
+  --white-color: hsl(0, 0%, 100%);
+  --text-color: hsl(0, 0%, 75%);
+  --text-color-light: hsl(0, 0%, 55%);
+  --border-color: hsl(0, 0%, 45%);
+  --body-color: hsl(238, 100%, 12%);
+  --body-color-light: hsl(238, 60%, 20%);
+
+  /*========== Font and typography ==========*/
+  /*.5rem = 8px | 1rem = 16px ...*/
+  --body-font: "Poppins", sans-serif;
+  --second-font: "Audiowide", sans-serif;
+  --biggest-font-size: 3rem;
+  --big-font-size: 1.5rem;
+  --h1-font-size: 1.5rem;
+  --h2-font-size: 1.25rem;
+  --normal-font-size: 0.938rem;
+  --small-font-size: 0.813rem;
+
+  /*========== Font weight ==========*/
+  --font-regular: 400;
+  --font-medium: 500;
+  --font-semi-bold: 600;
+
+  /*========== z index ==========*/
+  --z-tooltip: 10;
+  --z-fixed: 100;
+}
+
+/*========== Responsive typography ==========*/
+@media screen and (min-width: 1150px) {
+  :root {
+    --biggest-font-size: 5.5rem;
+    --big-font-size: 3rem;
+    --h1-font-size: 2.25rem;
+    --h2-font-size: 1.5rem;
+    --normal-font-size: 1rem;
+    --small-font-size: 0.875rem;
+  }
+}
+
+/*=============== BASE ===============*/
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  outline: none;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body,
+input,
+button {
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+}
+
+body {
+  background-color: var(--body-color);
+  color: var(--text-color);
+}
+
+input,
+button {
+  border: none;
+  outline: none;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: var(--white-color);
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/*=============== REUSABLE CSS CLASSES ===============*/
+.container {
+  max-width: 1120px;
+  margin-inline: 1.5rem;
+}
+
+.grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.section {
+  padding-block: 5rem 1rem;
+}
+
+.section__title {
+  font-size: var(--big-font-size);
+  font-family: var(--second-font);
+  font-weight: initial;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.section__title span {
+  display: block;
+  background: var(--third-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.main {
+  overflow: hidden;
+}
+
+/*=============== HEADER & NAV ===============*/
+
+.header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  z-index: var(--z-fixed);
+}
+
+.nav {
+  position: relative;
+  height: var(--header-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-logo {
+  display: inline-flex;
+  align-items: center;
+  column-gap: 0.25rem;
+  color: var(--white-color);
+  font-weight: var(--font-semi-bold);
+}
+
+.nav-logo img {
+  width: 1.5rem;
+}
+
+.nav-toggle,
+.nav-close {
+  display: inline-flex;
+  font-size: 1.5rem;
+  color: var(--white-color);
+  cursor: pointer;
+}
+
+.nav-menu {
+  position: fixed;
+  width: 80%;
+  height: 100%;
+  top: 0;
+  right: -100%;
+  background-color: hsla(238, 100%, 6%, 0.5);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  padding: 8rem 3.5rem 3.5rem;
+  transition: right 0.4s;
+}
+
+.nav-list {
+  display: flex;
+  flex-direction: column;
+  row-gap: 3rem;
+}
+
+.nav-link {
+  color: var(--white-color);
+  font-size: var(--h2-font-size);
+  font-family: var(--second-font);
+  transition: color 0.4s;
+}
+
+.nav-link:hover {
+  color: var(--first-color);
+}
+
+.nav-img,
+.nav-close {
+  position: absolute;
+}
+
+.nav-img {
+  width: 300px;
+  right: -3rem;
+  bottom: 5rem;
+  z-index: -1;
+}
+
+.nav-close {
+  top: 1rem;
+  right: 1.5rem;
+}
+
+/* Show menu */
+
+.show-menu {
+  right: 0;
+}
+
+/* Add blur header */
+
+.blur-header::after {
+  content: "";
+  position: absolute;
+  width: 1000%;
+  height: 100%;
+  background-color: hsla(238, 100%, 6%, 0.5);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+/* Active link */
+
+.active-link {
+  color: var(--first-color);
+}
+
+/*=============== HOME ===============*/
+.home {
+  position: relative;
+}
+
+.home-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  mix-blend-mode: screen;
+}
+
+.home-container {
+  position: relative;
+  row-gap: 3rem;
+  padding-top: 3rem;
+}
+
+.home-data {
+  position: relative;
+  text-align: center;
+}
+
+.home-data span {
+  display: block;
+}
+
+.home-title {
+  font-size: var(--biggest-font-size);
+  font-family: var(--second-font);
+  font-weight: initial;
+  margin-bottom: 1.5rem;
+}
+
+.home-title span:nth-child(1) {
+  background: var(--third-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.home-title span:nth-child(3) {
+  background: var(--second-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.home-ovni {
+  width: 50px;
+  position: absolute;
+  top: 4rem;
+  right: -1rem;
+  transform: rotateY(180deg);
+}
+
+.home-img {
+  width: 320px;
+  justify-self: center;
+}
+
+/*=============== BUTTON ===============*/
+.button {
+  display: inline-flex;
+  justify-content: center;
+  background: var(--first-gradient);
+  color: var(--white-color);
+  font-weight: var(--font-semi-bold);
+  font-size: var(--h2-font-size);
+  padding: 1rem 2rem;
+  transition: box-shadow 0.4s;
+  cursor: pointer;
+}
+.button:hover {
+  box-shadow: 0 8px 32px hsla(243, 100%, 54%, 0.4);
+}
+
+.button-yellow {
+  background: var(--third-gradient);
+}
+
+.button-yellow:hover {
+  box-shadow: 0 8px 32px hsla(25, 96%, 55%, 0.4);
+}
+
+/*=============== TRAVEL ===============*/
+
+.travel {
+  position: relative;
+}
+
+.travel-lines {
+  max-width: initial;
+  width: 500px;
+  position: absolute;
+  top: 4rem;
+  left: 0;
+}
+
+.travel-container {
+  position: relative;
+  background-color: hsla(238, 50%, 20%, 0.4);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  padding: 2rem 2rem 5rem;
+}
+
+.travel-swiper {
+  padding-top: 3rem;
+}
+.travel-card {
+  position: relative;
+  border: 2px solid;
+  border-image: var(--second-gradient) 1;
+  background: linear-gradient(hsla(243, 98%, 51%, 0.3), transparent 50%);
+  padding: 9.25rem 1rem 3rem;
+  text-align: center;
+}
+.travel-img {
+  position: absolute;
+  width: 180px;
+  top: -3rem;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  transform: rotate(-90deg);
+  transition: transform 0.6s;
+}
+
+.travel-title {
+  font-size: var(--h2-font-size);
+}
+
+.travel-info {
+  display: block;
+  color: var(--first-color);
+  font-weight: var(--font-semi-bold);
+  margin-bottom: 1rem;
+}
+
+.travel-description {
+  font-size: var(--small-font-size);
+}
+
+/* Swiper class */
+
+.swiper-pagination-bullets.swiper-pagination-horizontal {
+  bottom: 2rem;
+}
+
+.swiper-pagination-bullet {
+  width: 1rem;
+  height: 1rem;
+  opacity: 1;
+  border: 2px solid var(--border-color);
+  background: transparent;
+}
+
+.swiper-pagination-bullet-active {
+  border: 2px solid transparent;
+  background: linear-gradient(var(--body-color), var(--body-color)) padding-box,
+    linear-gradient(135deg, hsl(25, 96%, 55%) 0%, hsl(34, 93%, 53%) 100%)
+      border-box;
+  position: relative;
+}
+
+.swiper-pagination-bullet-active::after {
+  content: "";
+  position: absolute;
+  width: 0.5rem;
+  height: 0.5rem;
+  background: var(--third-gradient);
+  border-radius: 50%;
+  inset: 0;
+  margin: auto;
+}
+
+/* Swiper animation */
+
+.swiper-slide-active .travel-img {
+  transform: rotate(0);
+}
+
+/*=============== EXPLORE ===============*/
+.explore-container {
+  row-gap: 3rem;
+}
+
+.explore-data {
+  position: relative;
+}
+
+.explore-planet {
+  position: absolute;
+  width: 50px;
+  top: 3rem;
+  right: 0;
+}
+
+.explore-description {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.explore-info {
+  display: flex;
+  justify-content: center;
+  column-gap: 3rem;
+}
+
+.explore-info-title {
+  font-size: var(--normal-font-size);
+}
+
+.explore-info-number {
+  font-size: var(--h1-font-size);
+  font-family: var(--second-font);
+  background: var(--second-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.explore-info-number span {
+  font-size: var(--small-font-size);
+}
+
+.explore-img {
+  width: 320px;
+  justify-self: center;
+}
+
+/*=============== HISTORY ===============*/
+.history {
+  position: relative;
+}
+
+.history-container {
+  position: relative;
+  row-gap: 2.5rem;
+  grid-template-columns: 265px;
+  justify-content: center;
+}
+
+.history-card {
+  text-align: center;
+}
+
+.history-img {
+  width: 150px;
+  margin: 0 auto 0.75rem;
+}
+
+.history-description span {
+  color: var(--first-color);
+  font-weight: var(--font-semi-bold);
+}
+
+.history-planet-1,
+.history-planet-2 {
+  position: absolute;
+}
+
+.history-planet-1 {
+  width: 250px;
+  top: 10rem;
+  left: -8rem;
+  z-index: -1;
+}
+
+.history-planet-2 {
+  width: 150px;
+  right: -5rem;
+  bottom: 6rem;
+}
+
+/*=============== CONTACT ===============*/
+.contact-container {
+  padding-bottom: 2rem;
+}
+
+.contact-form {
+  display: grid;
+  row-gap: 1rem;
+}
+
+.section-title {
+  font-size: var(--biggest-font-size);
+  font-family: var(--second-font);
+  font-weight: initial;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.section-title span {
+  background: var(--third-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.contact-input {
+  width: 100%;
+  background-color: var(--body-color);
+  border: 2px solid var(--border-color);
+  padding: 1rem;
+  color: var(--white-color);
+}
+
+/*=============== FOOTER ===============*/
+
+.footer {
+  overflow: hidden;
+}
+
+.footer-container {
+  position: relative;
+  row-gap: 4.5rem;
+  padding-block: 4rem;
+}
+
+.footer-planet-1,
+.footer-planet-2 {
+  position: absolute;
+}
+
+.footer-planet-1 {
+  width: 200px;
+  left: -6.5rem;
+  bottom: -4.5rem;
+}
+
+.footer-planet-2 {
+  width: 50px;
+  top: 5.5rem;
+  right: 0;
+}
+
+.footer-content {
+  row-gap: 2.5rem;
+}
+
+.footer-links {
+  display: flex;
+  column-gap: 2rem;
+  justify-content: center;
+}
+
+.footer-link {
+  color: var(--white-color);
+  font-weight: var(--font-semi-bold);
+  transition: color 0.4s;
+}
+
+.footer-link:hover {
+  color: var(--first-color);
+}
+
+.footer-social {
+  display: flex;
+  column-gap: 1rem;
+  justify-content: center;
+}
+
+.footer-social-link {
+  display: inline-flex;
+  background: var(--third-gradient);
+  color: var(--white-color);
+  font-size: 1.5rem;
+  padding: 0.25rem;
+  transition: box-shadow 0.4s;
+}
+
+.footer-social-link:hover {
+  box-shadow: 0 8px 32px hsla(25, 96%, 55%, 0.6);
+}
+
+.footer-copy {
+  text-align: center;
+  z-index: var(--z-tooltip);
+  color: var(--white-color);
+  font-size: var(--small-font-size);
+}
+
+/*=============== SCROLL BAR ===============*/
+
+::-webkit-scrollbar {
+  width: 0.6rem;
+  background-color: hsl(238, 60%, 20%);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: hsl(238, 50%, 30%);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: hsl(238, 40%, 40%);
+}
+
+/*=============== SCROLL UP ===============*/
+
+.scrollup {
+  position: fixed;
+  right: 1rem;
+  bottom: -50%;
+  background-color: var(--body-color-light);
+  box-shadow: 0 8px 24px hsla(238, 60%, 4%, 0.6);
+  display: inline-flex;
+  padding: 6px;
+  color: var(--white-color);
+  font-size: 1.25rem;
+  z-index: var(--z-tooltip);
+  transition: bottom 0.4s, transform 0.4s;
+}
+
+.scrollup:hover {
+  transform: translateY(-0.5rem);
+}
+
+/* Show Scroll Up */
+
+.show-scroll {
+  bottom: 3rem;
+}
+
+/*=============== BREAKPOINTS ===============*/
+/* For small devices */
+
+@media (max-width: 340px) {
+  .container {
+    margin-inline: 1rem;
+  }
+  .home-title {
+    font-size: 2.5rem;
+  }
+  .travel-container {
+    padding-inline: 1rem;
+  }
+  .explore-info {
+    flex-direction: column;
+    row-gap: 1rem;
+    text-align: center;
+  }
+}
+
+/* For medium devices */
+
+@media (min-width: 540px) {
+  .home-container,
+  .explore-container {
+    grid-template-columns: 350px;
+    justify-content: center;
+  }
+  .travel-card {
+    width: 265px;
+  }
+}
+
+@media (min-width: 768px) {
+  .home-container,
+  .explore-container {
+    grid-template-columns: repeat(2, 350px);
+    align-items: center;
+  }
+  .explore-info {
+    justify-content: initial;
+  }
+  .explore-img {
+    order: -1;
+  }
+  .history-container {
+    grid-template-columns: repeat(2, 265px);
+  }
+  .contact-form {
+    width: 600px;
+    display: grid;
+    justify-self: center;
+    grid-template-columns: 1fr max-content;
+    column-gap: 1rem;
+    border: 2px solid var(--border-color);
+    padding: 1rem 1rem 1rem 1.5rem;
+  }
+  .contact-input {
+    border: none;
+    padding: 0;
+  }
+}
+
+/* For large devices */
+
+@media (min-width: 1150px) {
+  .container {
+    margin-inline: auto;
+  }
+  .section {
+    padding-block: 7rem 2rem;
+  }
+
+  .section-title {
+    margin-bottom: 3rem;
+    font-size: var(--big-font-size);
+  }
+
+  .nav {
+    height: calc(var(--header-height) + 2rem);
+  }
+  .nav-logo img {
+    width: 3rem;
+  }
+  .nav-toggle,
+  .nav-close {
+    font-size: 2rem;
+  }
+
+  .nav-menu {
+    width: 40%;
+    padding: 10rem 4.5rem 0;
+  }
+  .nav-list {
+    row-gap: 3.5rem;
+  }
+
+  .nav-close {
+    top: 1.7rem;
+  }
+
+  .nav-img {
+    width: 400px;
+    right: -4rem;
+  }
+
+  .home-container {
+    grid-template-columns: 540px 550px;
+    column-gap: 2rem;
+  }
+  .home-title {
+    margin-bottom: 3rem;
+  }
+  .home-ovni {
+    width: 100px;
+    top: 10rem;
+    right: 1.5rem;
+  }
+  .home-img {
+    width: 550px;
+  }
+  .travel-lines {
+    width: 800px;
+  }
+  .travel-container {
+    padding: 3.5rem 3.5rem 7.5rem;
+  }
+  .travel-swiper {
+    max-width: 980px;
+  }
+  .travel-card {
+    padding-top: 11rem;
+  }
+  .travel-img {
+    width: 200px;
+  }
+  .travel-info {
+    margin-bottom: 1.5rem;
+  }
+  .travel-description {
+    font-size: var(--normal-font-size);
+  }
+  .swiper-pagination-bullets.swiper-pagination-horizontal {
+    bottom: 3rem;
+  }
+  .explore-container {
+    grid-template-columns: 550px 480px;
+    column-gap: 2rem;
+  }
+  .explore-img {
+    width: 550px;
+  }
+  .explore-data .section-title {
+    margin-bottom: 1.5rem;
+  }
+  .explore-description {
+    margin-bottom: 3rem;
+    text-align: initial;
+  }
+  .explore-planet {
+    width: 100px;
+    right: -4rem;
+  }
+  .history-container {
+    grid-template-columns: repeat(3, 265px);
+    column-gap: 5rem;
+  }
+  .history-img {
+    width: 200px;
+    margin-bottom: 1rem;
+  }
+  .history-planet-1 {
+    width: 500px;
+    left: -15rem;
+  }
+  .history-planet-2 {
+    width: 300px;
+    right: -8rem;
+    bottom: 10rem;
+  }
+  .footer-container {
+    padding-block: 4rem 3rem;
+  }
+  .footer-links {
+    column-gap: 4rem;
+  }
+  .footer-social {
+    column-gap: 1.5rem;
+  }
+  .footer-planet-1 {
+    width: 400px;
+    bottom: -12rem;
+  }
+  .footer-planet-2 {
+    width: 150px;
+  }
+  .scrollup {
+    right: 3rem;
+  }
+}
